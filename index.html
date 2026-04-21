@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stripe Fee Calculator for Digital Products | Profit Margin + Break-Even</title>
+    <meta
+      name="description"
+      content="Free Stripe fee calculator for digital products. Estimate Stripe fees, VAT, affiliate cuts, refund reserves, net profit, and break-even price for templates, courses, and micro-SaaS offers."
+    />
+    <meta property="og:title" content="Stripe Fee Calculator for Digital Products" />
+    <meta
+      property="og:description"
+      content="Model Stripe fees, VAT, affiliate payouts, refund reserves, and true net margin before you launch a digital product."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero card">
+        <p class="eyebrow">First traffic motion</p>
+        <h1>Stripe fee calculator for digital products, courses, templates, and micro-SaaS</h1>
+        <p class="subhead">
+          Search-first utility for sellers who need the real answer, not rough math. Model coupon discounts,
+          VAT-inclusive pricing, affiliate payouts, refund reserves, Stripe fees, net profit, and break-even price in one pass.
+        </p>
+        <div class="hero-actions">
+          <a class="button-link" href="#calculator-form">Run the calculator</a>
+          <a class="button-link button-link-secondary" href="#faq">See target search questions</a>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Preset landing angles</p>
+            <h2>Load a shareable scenario for an outreach or SEO angle</h2>
+          </div>
+          <p class="hint compact">
+            These presets give the page immediate relevance for common digital-product pricing conversations.
+          </p>
+        </div>
+        <div id="preset-grid" class="preset-grid"></div>
+      </section>
+
+      <section class="grid">
+        <form id="calculator-form" class="card form-card">
+          <h2>Inputs</h2>
+          <div class="field-grid">
+            <label>
+              List price
+              <input name="listPrice" type="number" min="0.01" step="0.01" value="100" required />
+            </label>
+            <label>
+              Product cost
+              <input name="productCost" type="number" min="0" step="0.01" value="5" required />
+            </label>
+            <label>
+              Coupon discount %
+              <input name="couponPercent" type="number" min="0" max="100" step="0.1" value="10" required />
+            </label>
+            <label>
+              VAT included %
+              <input name="vatPercent" type="number" min="0" max="100" step="0.1" value="20" required />
+            </label>
+            <label>
+              Affiliate cut %
+              <input name="affiliatePercent" type="number" min="0" max="100" step="0.1" value="30" required />
+            </label>
+            <label>
+              Refund reserve %
+              <input name="refundRate" type="number" min="0" max="100" step="0.1" value="5" required />
+            </label>
+            <label>
+              Stripe fee %
+              <input name="stripePercent" type="number" min="0" max="100" step="0.1" value="2.9" required />
+            </label>
+            <label>
+              Stripe fixed fee
+              <input name="stripeFixed" type="number" min="0" step="0.01" value="0.3" required />
+            </label>
+          </div>
+          <button type="submit">Recalculate</button>
+          <p class="hint">Default assumptions reflect a typical US Stripe card charge plus optional VAT, affiliate, and refund reserve inputs.</p>
+        </form>
+
+        <section class="card results-card" aria-live="polite">
+          <h2>Outputs</h2>
+          <dl id="results" class="results"></dl>
+          <div class="share-block">
+            <label>
+              Share this scenario
+              <input id="share-url" type="text" readonly />
+            </label>
+            <button id="copy-share-link" type="button">Copy share link</button>
+            <p id="copy-status" class="hint compact" aria-live="polite"></p>
+          </div>
+        </section>
+      </section>
+
+      <section class="card notes">
+        <h2>What this traffic-ready version adds</h2>
+        <ul>
+          <li>Preset scenario cards for common digital-selling use cases that can anchor outreach or forum replies.</li>
+          <li>Shareable calculator URLs so one useful answer can become a reusable traffic asset.</li>
+          <li>Expanded search-intent copy aimed at people looking for Stripe fee, margin, and break-even math in one place.</li>
+        </ul>
+      </section>
+
+      <section id="faq" class="card faq">
+        <h2>FAQ for search-intent capture</h2>
+        <div class="faq-grid">
+          <article>
+            <h3>How do I calculate Stripe fees and profit margin together?</h3>
+            <p>
+              Start with list price, subtract any coupon discount, split out VAT if your listed price includes tax,
+              then subtract Stripe fees, affiliate payouts, refund reserve, and product cost. This calculator models all of those steps together.
+            </p>
+          </article>
+          <article>
+            <h3>Why is break-even price higher than expected?</h3>
+            <p>
+              Stripe percentage fees, fixed transaction fees, VAT-inclusive pricing, and affiliate cuts compound fast.
+              The break-even output shows the minimum list price needed to cover all of those costs.
+            </p>
+          </article>
+          <article>
+            <h3>Can I use this for Gumroad, courses, templates, or a micro-SaaS?</h3>
+            <p>
+              Yes. The preset scenarios map to common digital-product motions and the inputs stay flexible enough for one-off products,
+              cohort courses, annual software plans, or affiliate-driven launches.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./app/app.js"></script>
+  </body>
+</html>
