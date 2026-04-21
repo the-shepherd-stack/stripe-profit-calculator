@@ -8,6 +8,9 @@ const homepagePath = resolve(projectRoot, 'index.html');
 const notionArticlePath = resolve(projectRoot, 'stripe-fees-for-notion-templates', 'index.html');
 const courseArticlePath = resolve(projectRoot, 'stripe-fees-for-online-courses', 'index.html');
 const microSaasArticlePath = resolve(projectRoot, 'stripe-fees-for-micro-saas', 'index.html');
+const robotsPath = resolve(projectRoot, 'robots.txt');
+const sitemapPath = resolve(projectRoot, 'sitemap.xml');
+const indexNowKeyPath = resolve(projectRoot, '26125b8d-03bc-4033-9664-c567f18ad9a4.txt');
 
 function readText(path) {
   return readFileSync(path, 'utf8');
@@ -74,4 +77,27 @@ test('micro-SaaS support article includes the live preset link and homepage CTA'
     /https:\/\/stripe-profit-calculator\.vercel\.app\/\?listPrice=149&productCost=8&couponPercent=15&vatPercent=0&affiliatePercent=0&refundRate=3&stripePercent=2\.9&stripeFixed=0\.3/,
   );
   assert.match(article, />Stripe fee calculator for digital products</);
+});
+
+test('robots.txt advertises the sitemap for external crawlers', () => {
+  const robots = readText(robotsPath);
+
+  assert.match(robots, /^User-agent: \*$/m);
+  assert.match(robots, /^Allow: \/$/m);
+  assert.match(robots, /^Sitemap: https:\/\/stripe-profit-calculator\.vercel\.app\/sitemap\.xml$/m);
+});
+
+test('sitemap.xml lists the live homepage and support pages for external discovery', () => {
+  const sitemap = readText(sitemapPath);
+
+  assert.match(sitemap, /<loc>https:\/\/stripe-profit-calculator\.vercel\.app\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/stripe-profit-calculator\.vercel\.app\/stripe-fees-for-notion-templates\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/stripe-profit-calculator\.vercel\.app\/stripe-fees-for-online-courses\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/stripe-profit-calculator\.vercel\.app\/stripe-fees-for-micro-saas\/<\/loc>/);
+});
+
+test('IndexNow key file exists for external URL submission', () => {
+  const key = readText(indexNowKeyPath).trim();
+
+  assert.equal(key, '26125b8d-03bc-4033-9664-c567f18ad9a4');
 });
