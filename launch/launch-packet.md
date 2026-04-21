@@ -19,21 +19,21 @@ Core search intent:
 - how to calculate stripe fees and profit together
 
 ## Publish checklist
-1. Set BASE_URL to the live site root.
-2. Replace each `BASE_URL` token in this packet with the real URL.
+1. Production URL is now https://stripe-profit-calculator.vercel.app.
+2. Reuse the live links below directly in posts and replies.
 3. Publish the homepage at the site root.
 4. Use one launch post plus one forum answer on day one.
 5. Reuse the preset links below when answering niche questions.
 
 ## Preset links
-Use these after replacing `BASE_URL`.
+These are the live preset links.
 
 - Notion template scenario:
-  `BASE_URL/?listPrice=49&productCost=0&couponPercent=10&vatPercent=0&affiliatePercent=0&refundRate=2&stripePercent=2.9&stripeFixed=0.3`
+  `https://stripe-profit-calculator.vercel.app/?listPrice=49&productCost=0&couponPercent=10&vatPercent=0&affiliatePercent=0&refundRate=2&stripePercent=2.9&stripeFixed=0.3`
 - Cohort course scenario:
-  `BASE_URL/?listPrice=299&productCost=15&couponPercent=20&vatPercent=20&affiliatePercent=30&refundRate=5&stripePercent=2.9&stripeFixed=0.3`
+  `https://stripe-profit-calculator.vercel.app/?listPrice=299&productCost=15&couponPercent=20&vatPercent=20&affiliatePercent=30&refundRate=5&stripePercent=2.9&stripeFixed=0.3`
 - Micro-SaaS annual plan scenario:
-  `BASE_URL/?listPrice=149&productCost=8&couponPercent=15&vatPercent=0&affiliatePercent=0&refundRate=3&stripePercent=2.9&stripeFixed=0.3`
+  `https://stripe-profit-calculator.vercel.app/?listPrice=149&productCost=8&couponPercent=15&vatPercent=0&affiliatePercent=0&refundRate=3&stripePercent=2.9&stripeFixed=0.3`
 
 ## Launch post options
 
@@ -44,10 +44,10 @@ It handles more than the basic fee math: coupon discounts, VAT-inclusive pricing
 
 Useful if you sell templates, courses, or a micro-SaaS and want the real margin before launch.
 
-Try it here: BASE_URL
+Try it here: https://stripe-profit-calculator.vercel.app
 Preset examples:
-- Notion template: BASE_URL/?listPrice=49&productCost=0&couponPercent=10&vatPercent=0&affiliatePercent=0&refundRate=2&stripePercent=2.9&stripeFixed=0.3
-- Course launch: BASE_URL/?listPrice=299&productCost=15&couponPercent=20&vatPercent=20&affiliatePercent=30&refundRate=5&stripePercent=2.9&stripeFixed=0.3
+- Notion template: https://stripe-profit-calculator.vercel.app/?listPrice=49&productCost=0&couponPercent=10&vatPercent=0&affiliatePercent=0&refundRate=2&stripePercent=2.9&stripeFixed=0.3
+- Course launch: https://stripe-profit-calculator.vercel.app/?listPrice=299&productCost=15&couponPercent=20&vatPercent=20&affiliatePercent=30&refundRate=5&stripePercent=2.9&stripeFixed=0.3
 
 ### Option B: practical problem/solution
 If you price a digital product with Stripe, the fee is only part of the problem.
@@ -63,7 +63,7 @@ I put together a free calculator that shows:
 - net profit
 - break-even list price
 
-Calculator: BASE_URL
+Calculator: https://stripe-profit-calculator.vercel.app
 
 ### Option C: search-first short post
 Free Stripe fee + profit margin calculator for digital products:
@@ -73,7 +73,7 @@ Free Stripe fee + profit margin calculator for digital products:
 - affiliate launches
 
 Includes break-even pricing and shareable scenario URLs.
-BASE_URL
+https://stripe-profit-calculator.vercel.app
 
 ## Comment/reply hooks
 - If someone asks “How much does Stripe take from my course sales?” reply with the cohort-course preset.
