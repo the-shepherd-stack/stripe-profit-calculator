@@ -7,6 +7,7 @@ const projectRoot = resolve(import.meta.dirname, '..');
 const homepagePath = resolve(projectRoot, 'index.html');
 const notionArticlePath = resolve(projectRoot, 'stripe-fees-for-notion-templates', 'index.html');
 const courseArticlePath = resolve(projectRoot, 'stripe-fees-for-online-courses', 'index.html');
+const microSaasArticlePath = resolve(projectRoot, 'stripe-fees-for-micro-saas', 'index.html');
 
 function readText(path) {
   return readFileSync(path, 'utf8');
@@ -30,6 +31,15 @@ test('homepage links to the online courses support article for internal distribu
   );
 });
 
+test('homepage links to the micro-SaaS support article for internal distribution', () => {
+  const homepage = readText(homepagePath);
+
+  assert.match(
+    homepage,
+    /href="\.\/stripe-fees-for-micro-saas\/"[^>]*>Micro-SaaS pricing guide</,
+  );
+});
+
 test('Notion template support article includes the live preset link and homepage CTA', () => {
   const article = readText(notionArticlePath);
 
@@ -50,6 +60,18 @@ test('online courses support article includes the live preset link and homepage 
   assert.match(
     article,
     /https:\/\/stripe-profit-calculator\.vercel\.app\/\?listPrice=299&productCost=15&couponPercent=20&vatPercent=20&affiliatePercent=30&refundRate=5&stripePercent=2\.9&stripeFixed=0\.3/,
+  );
+  assert.match(article, />Stripe fee calculator for digital products</);
+});
+
+test('micro-SaaS support article includes the live preset link and homepage CTA', () => {
+  const article = readText(microSaasArticlePath);
+
+  assert.match(article, /<title>Stripe Fees for Micro-SaaS \| Stripe Profit Calculator</);
+  assert.match(article, /stripe fees for micro-saas/i);
+  assert.match(
+    article,
+    /https:\/\/stripe-profit-calculator\.vercel\.app\/\?listPrice=149&productCost=8&couponPercent=15&vatPercent=0&affiliatePercent=0&refundRate=3&stripePercent=2\.9&stripeFixed=0\.3/,
   );
   assert.match(article, />Stripe fee calculator for digital products</);
 });
