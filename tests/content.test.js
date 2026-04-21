@@ -6,6 +6,7 @@ import { resolve } from 'node:path';
 const projectRoot = resolve(import.meta.dirname, '..');
 const homepagePath = resolve(projectRoot, 'index.html');
 const notionArticlePath = resolve(projectRoot, 'stripe-fees-for-notion-templates', 'index.html');
+const courseArticlePath = resolve(projectRoot, 'stripe-fees-for-online-courses', 'index.html');
 
 function readText(path) {
   return readFileSync(path, 'utf8');
@@ -20,6 +21,15 @@ test('homepage links to the Notion template support article for internal distrib
   );
 });
 
+test('homepage links to the online courses support article for internal distribution', () => {
+  const homepage = readText(homepagePath);
+
+  assert.match(
+    homepage,
+    /href="\.\/stripe-fees-for-online-courses\/"[^>]*>Online course pricing guide</,
+  );
+});
+
 test('Notion template support article includes the live preset link and homepage CTA', () => {
   const article = readText(notionArticlePath);
 
@@ -28,6 +38,18 @@ test('Notion template support article includes the live preset link and homepage
   assert.match(
     article,
     /https:\/\/stripe-profit-calculator\.vercel\.app\/\?listPrice=49&productCost=0&couponPercent=10&vatPercent=0&affiliatePercent=0&refundRate=2&stripePercent=2\.9&stripeFixed=0\.3/,
+  );
+  assert.match(article, />Stripe fee calculator for digital products</);
+});
+
+test('online courses support article includes the live preset link and homepage CTA', () => {
+  const article = readText(courseArticlePath);
+
+  assert.match(article, /<title>Stripe Fees for Online Courses \| Stripe Profit Calculator</);
+  assert.match(article, /stripe fees for online courses/i);
+  assert.match(
+    article,
+    /https:\/\/stripe-profit-calculator\.vercel\.app\/\?listPrice=299&productCost=15&couponPercent=20&vatPercent=20&affiliatePercent=30&refundRate=5&stripePercent=2\.9&stripeFixed=0\.3/,
   );
   assert.match(article, />Stripe fee calculator for digital products</);
 });
