@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://stripe-profit-calculator.vercel.app/sitemap.xml
+Sitemap: https://profitafterfees.com/sitemap.xml

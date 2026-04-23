@@ -66,6 +66,24 @@ h1, h2, h3 {
   align-items: center;
 }
 
+.hero-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+}
+
+.hero-points li {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 10px 14px;
+  color: var(--text);
+  background: rgba(31, 41, 55, 0.6);
+  text-align: center;
+}
+
 .button-link,
 button {
   border: 0;

@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://stripe-profit-calculator.vercel.app/</loc>
+    <loc>https://profitafterfees.com/</loc>
   </url>
   <url>
-    <loc>https://stripe-profit-calculator.vercel.app/stripe-fees-for-notion-templates/</loc>
+    <loc>https://profitafterfees.com/stripe-fees-for-notion-templates/</loc>
   </url>
   <url>
-    <loc>https://stripe-profit-calculator.vercel.app/stripe-fees-for-online-courses/</loc>
+    <loc>https://profitafterfees.com/stripe-fees-for-online-courses/</loc>
   </url>
   <url>
-    <loc>https://stripe-profit-calculator.vercel.app/stripe-fees-for-micro-saas/</loc>
+    <loc>https://profitafterfees.com/stripe-fees-for-micro-saas/</loc>
+  </url>
+  <url>
+    <loc>https://profitafterfees.com/digital-product-pricing-calculator/</loc>
   </url>
 </urlset>
