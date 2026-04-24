@@ -5,6 +5,7 @@ import {
   presets,
   scenarioFields,
 } from './scenarios.js';
+import { buildCostHighlights, buildScenarioVerdict } from './verdict.js';
 
 const form = document.querySelector('#calculator-form');
 const resultsNode = document.querySelector('#results');
@@ -12,6 +13,11 @@ const presetGrid = document.querySelector('#preset-grid');
 const shareUrlNode = document.querySelector('#share-url');
 const copyShareButton = document.querySelector('#copy-share-link');
 const copyStatusNode = document.querySelector('#copy-status');
+const verdictHeadlineNode = document.querySelector('#verdict-headline');
+const verdictDetailNode = document.querySelector('#verdict-detail');
+const verdictSection = document.querySelector('.scenario-verdict');
+const costHighlightsListNode = document.querySelector('#cost-highlights-list');
+let pendingInputRun = null;
 
 const currencyFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -67,6 +73,20 @@ function renderResult(result) {
     .join('');
 }
 
+function renderVerdict(result) {
+  const verdict = buildScenarioVerdict(result);
+  verdictSection.dataset.tone = verdict.tone;
+  verdictHeadlineNode.textContent = verdict.headline;
+  verdictDetailNode.textContent = verdict.detail;
+}
+
+function renderCostHighlights(result) {
+  const highlights = buildCostHighlights(result);
+  costHighlightsListNode.innerHTML = highlights
+    .map((highlight) => `<li>${highlight}</li>`)
+    .join('');
+}
+
 function buildShareUrl(values) {
   const url = new URL(window.location.href);
   url.search = buildScenarioQuery(values);
@@ -91,6 +111,8 @@ function setCopyStatus(message) {
 function runCalculation() {
   const values = readForm(form);
   const result = calculateScenario(values);
+  renderVerdict(result);
+  renderCostHighlights(result);
   renderResult(result);
   updateShareUrl(values);
   clearCopyStatus();
@@ -122,6 +144,21 @@ function renderPresets() {
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   runCalculation();
+});
+
+form.addEventListener('input', (event) => {
+  if (!(event.target instanceof HTMLInputElement)) {
+    return;
+  }
+
+  window.clearTimeout(pendingInputRun);
+  pendingInputRun = window.setTimeout(() => {
+    try {
+      runCalculation();
+    } catch (error) {
+      // Ignore temporary invalid states while a visitor is editing a number field.
+    }
+  }, 150);
 });
 
 copyShareButton.addEventListener('click', async () => {

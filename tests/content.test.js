@@ -9,6 +9,8 @@ const notionArticlePath = resolve(projectRoot, 'stripe-fees-for-notion-templates
 const courseArticlePath = resolve(projectRoot, 'stripe-fees-for-online-courses', 'index.html');
 const microSaasArticlePath = resolve(projectRoot, 'stripe-fees-for-micro-saas', 'index.html');
 const digitalPricingArticlePath = resolve(projectRoot, 'digital-product-pricing-calculator', 'index.html');
+const breakEvenArticlePath = resolve(projectRoot, 'break-even-price-calculator', 'index.html');
+const profitMarginArticlePath = resolve(projectRoot, 'how-to-calculate-profit-margin-on-digital-products', 'index.html');
 const faviconPath = resolve(projectRoot, 'favicon.svg');
 const socialCardPath = resolve(projectRoot, 'social-preview.png');
 const robotsPath = resolve(projectRoot, 'robots.txt');
@@ -54,12 +56,36 @@ test('homepage keeps the CTA copy customer-facing', () => {
   assert.doesNotMatch(homepage, /Search-first utility/);
 });
 
+test('homepage reserves a biggest deductions block for plain-language cost drivers', () => {
+  const homepage = readText(homepagePath);
+
+  assert.match(homepage, /<section class="cost-highlights" aria-live="polite">/);
+  assert.match(homepage, /<h3>Biggest deductions<\/h3>/);
+  assert.match(homepage, /<p class="hint compact">See what is taking the biggest bite out of each sale<\/p>/);
+  assert.match(homepage, /<ul id="cost-highlights-list" class="cost-highlights-list"><\/ul>/);
+});
+
 test('homepage highlights zero-friction value above the fold', () => {
   const homepage = readText(homepagePath);
 
   assert.match(homepage, /No signup required/i);
   assert.match(homepage, /Profit and break-even instantly/i);
   assert.match(homepage, /Share pricing scenarios with a link/i);
+});
+
+test('homepage tells visitors results update as they type', () => {
+  const homepage = readText(homepagePath);
+
+  assert.match(homepage, /Results update as you type/i);
+});
+
+test('homepage reserves a customer-facing quick-read verdict block in the results card', () => {
+  const homepage = readText(homepagePath);
+
+  assert.match(homepage, /<section class="scenario-verdict" aria-live="polite">/);
+  assert.match(homepage, /<p class="verdict-label">Quick read<\/p>/);
+  assert.match(homepage, /<h3 id="verdict-headline"><\/h3>/);
+  assert.match(homepage, /<p id="verdict-detail" class="hint compact"><\/p>/);
 });
 
 test('homepage includes a share-ready social preview for distribution posts', () => {
@@ -187,4 +213,51 @@ test('sitemap.xml includes the digital product pricing calculator page', () => {
   const sitemap = readText(sitemapPath);
 
   assert.match(sitemap, /<loc>https:\/\/profitafterfees\.com\/digital-product-pricing-calculator\/<\/loc>/);
+});
+
+test('homepage links to the break-even price calculator page for pricing-floor intent', () => {
+  const homepage = readText(homepagePath);
+
+  assert.match(homepage, /href="\.\/break-even-price-calculator\/"[^>]*>Break-even price calculator</);
+});
+
+test('break-even price calculator page exists with customer-facing copy and calculator CTA', () => {
+  const article = readText(breakEvenArticlePath);
+
+  assert.match(article, /<title>Break-Even Price Calculator \| Profit After Fees</);
+  assert.match(article, /<h1>Break-even price calculator for digital products with real fee pressure<\/h1>/);
+  assert.match(article, /break-even price calculator/i);
+  assert.match(article, /hidden profit leaks/i);
+  assert.match(article, /https:\/\/profitafterfees\.com\/\?listPrice=10&productCost=20&couponPercent=0&vatPercent=0&affiliatePercent=0&refundRate=0&stripePercent=2\.9&stripeFixed=0\.3/);
+  assert.match(article, />Open the calculator with a loss-making scenario</);
+});
+
+test('sitemap.xml includes the break-even price calculator page', () => {
+  const sitemap = readText(sitemapPath);
+
+  assert.match(sitemap, /<loc>https:\/\/profitafterfees\.com\/break-even-price-calculator\/<\/loc>/);
+});
+
+
+test('homepage links to the profit margin guide for searchers who know their math is wrong', () => {
+  const homepage = readText(homepagePath);
+
+  assert.match(homepage, /href="\.\/how-to-calculate-profit-margin-on-digital-products\/"[^>]*>How to calculate profit margin on digital products</);
+});
+
+test('profit margin guide exists with pain-first copy and a calculator CTA', () => {
+  const article = readText(profitMarginArticlePath);
+
+  assert.match(article, /<title>How to Calculate Profit Margin on Digital Products \| Profit After Fees</);
+  assert.match(article, /<h1>How to calculate profit margin on digital products without lying to yourself<\/h1>/);
+  assert.match(article, /wrong margin math/i);
+  assert.match(article, /hidden profit leaks/i);
+  assert.match(article, /https:\/\/profitafterfees\.com\/\?listPrice=100&productCost=5&couponPercent=10&vatPercent=20&affiliatePercent=30&refundRate=5&stripePercent=2\.9&stripeFixed=0\.3/);
+  assert.match(article, />Open the calculator with a realistic profit-margin scenario</);
+});
+
+test('sitemap.xml includes the profit margin guide', () => {
+  const sitemap = readText(sitemapPath);
+
+  assert.match(sitemap, /<loc>https:\/\/profitafterfees\.com\/how-to-calculate-profit-margin-on-digital-products\/<\/loc>/);
 });

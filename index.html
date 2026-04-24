@@ -103,11 +103,21 @@
             </label>
           </div>
           <button type="submit">Recalculate</button>
-          <p class="hint">Default assumptions reflect a typical US Stripe card charge plus optional VAT, affiliate, and refund reserve inputs.</p>
+          <p class="hint">Results update as you type. Default assumptions reflect a typical US Stripe card charge plus optional VAT, affiliate, and refund reserve inputs.</p>
         </form>
 
         <section class="card results-card" aria-live="polite">
           <h2>Outputs</h2>
+          <section class="scenario-verdict" aria-live="polite">
+            <p class="verdict-label">Quick read</p>
+            <h3 id="verdict-headline"></h3>
+            <p id="verdict-detail" class="hint compact"></p>
+          </section>
+          <section class="cost-highlights" aria-live="polite">
+            <h3>Biggest deductions</h3>
+            <p class="hint compact">See what is taking the biggest bite out of each sale</p>
+            <ul id="cost-highlights-list" class="cost-highlights-list"></ul>
+          </section>
           <dl id="results" class="results"></dl>
           <div class="share-block">
             <label>
@@ -139,6 +149,8 @@
           <li><a href="./stripe-fees-for-online-courses/">Online course pricing guide</a></li>
           <li><a href="./stripe-fees-for-micro-saas/">Micro-SaaS pricing guide</a></li>
           <li><a href="./digital-product-pricing-calculator/">Digital product pricing calculator</a></li>
+          <li><a href="./break-even-price-calculator/">Break-even price calculator</a></li>
+          <li><a href="./how-to-calculate-profit-margin-on-digital-products/">How to calculate profit margin on digital products</a></li>
         </ul>
       </section>
 
